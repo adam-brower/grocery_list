@@ -61,56 +61,6 @@ const ICON = {
   </svg>`,
 };
 
-// ─────────────────────────────────────────────────
-// SAMPLE MEALS  (fallback when localStorage is empty)
-// ─────────────────────────────────────────────────
-
-const SAMPLE_MEALS = [
-  {
-    id: 'm1', name: 'Spaghetti Bolognese',
-    description: 'Classic Italian meat sauce — rich, hearty, and satisfying.',
-    recipe: '1. Heat olive oil in a large pan over medium heat.\n2. Saute diced onion and minced garlic until soft, about 5 min.\n3. Add ground beef and cook until browned.\n4. Pour in crushed tomatoes, simmer 20 min.\n5. Serve over spaghetti with Parmesan.',
-    ingredients: [
-      { name: 'Ground Beef (80/20)', qty: '1',   unit: 'lb',     category: 'meat',      price: 9.99  },
-      { name: 'Spaghetti',           qty: '1',   unit: 'lb',     category: 'dry_goods', price: 2.99  },
-      { name: 'Crushed Tomatoes',    qty: '2',   unit: 'cans',   category: 'dry_goods', price: 3.99  },
-      { name: 'Yellow Onion',        qty: '1',   unit: 'item',   category: 'produce',   price: 0.99  },
-      { name: 'Garlic',              qty: '1',   unit: 'head',   category: 'produce',   price: 1.29  },
-      { name: 'Fresh Basil',         qty: '1',   unit: 'bunch',  category: 'produce',   price: 2.99  },
-      { name: 'Parmesan Cheese',     qty: '4',   unit: 'oz',     category: 'cheese',    price: 5.99  },
-      { name: 'Olive Oil',           qty: '1',   unit: 'bottle', category: 'misc',      price: 9.99  },
-    ],
-  },
-  {
-    id: 'm2', name: 'Chicken Stir Fry',
-    description: 'Quick weeknight stir fry with crisp veggies over brown rice.',
-    recipe: '1. Slice chicken breast into thin strips.\n2. Heat sesame oil in a wok over high heat.\n3. Cook chicken until golden, about 4–5 min. Remove.\n4. Stir fry vegetables for 3 min.\n5. Add chicken back with soy sauce. Serve over rice.',
-    ingredients: [
-      { name: 'Chicken Breast', qty: '1.5', unit: 'lbs',    category: 'meat',      price: 11.99 },
-      { name: 'Broccoli',       qty: '1',   unit: 'head',   category: 'produce',   price: 3.49  },
-      { name: 'Bell Peppers',   qty: '2',   unit: 'items',  category: 'produce',   price: 3.98  },
-      { name: 'Snap Peas',      qty: '8',   unit: 'oz',     category: 'produce',   price: 4.99  },
-      { name: 'Fresh Ginger',   qty: '1',   unit: 'item',   category: 'produce',   price: 1.99  },
-      { name: 'Garlic',         qty: '1',   unit: 'head',   category: 'produce',   price: 1.29  },
-      { name: 'Soy Sauce',      qty: '1',   unit: 'bottle', category: 'misc',      price: 4.49  },
-      { name: 'Sesame Oil',     qty: '1',   unit: 'bottle', category: 'misc',      price: 6.99  },
-      { name: 'Brown Rice',     qty: '1',   unit: 'bag',    category: 'dry_goods', price: 4.99  },
-    ],
-  },
-  {
-    id: 'm3', name: 'Avocado Toast',
-    description: 'Simple, delicious breakfast.',
-    recipe: '1. Toast sourdough slices until golden.\n2. Mash avocado with lemon juice, flaky salt, and red pepper flakes.\n3. Spread on toast. Top with a fried egg if desired.',
-    ingredients: [
-      { name: 'Sourdough Bread',   qty: '1', unit: 'loaf',  category: 'bakery',  price: 6.99 },
-      { name: 'Avocados',          qty: '2', unit: 'items', category: 'produce', price: 3.98 },
-      { name: 'Lemon',             qty: '1', unit: 'item',  category: 'produce', price: 0.99 },
-      { name: 'Eggs',              qty: '1', unit: 'dozen', category: 'dairy',   price: 6.99 },
-      { name: 'Red Pepper Flakes', qty: '1', unit: 'jar',   category: 'misc',    price: 3.99 },
-      { name: 'Flaky Sea Salt',    qty: '1', unit: 'jar',   category: 'misc',    price: 5.99 },
-    ],
-  },
-];
 
 // ─────────────────────────────────────────────────
 // STATE
@@ -152,16 +102,31 @@ function save() {
   } catch(e) {}
 }
 
-function load() {
+async function load() {
+  // Always try data.json first — it's the source of truth from the repo
   try {
-    const m = localStorage.getItem('gl_meals');
-    const l = localStorage.getItem('gl_list');
-    S.meals = m ? migrateMeals(JSON.parse(m)) : JSON.parse(JSON.stringify(SAMPLE_MEALS));
-    S.list  = l ? migrateList(JSON.parse(l))  : [];
+    const res = await fetch('./data.json');
+    if (res.ok) {
+      const data = await res.json();
+      S.meals = migrateMeals(data.meals || []);
+      S.list  = migrateList(data.list  || []);
+      save(); // Keep localStorage in sync
+      render();
+      return;
+    }
+  } catch(e) {}
+
+  // Offline or fetch failed — fall back to localStorage
+  try {
+    const lm = localStorage.getItem('gl_meals');
+    const ll = localStorage.getItem('gl_list');
+    S.meals = lm ? migrateMeals(JSON.parse(lm)) : [];
+    S.list  = ll ? migrateList(JSON.parse(ll))  : [];
   } catch(e) {
-    S.meals = JSON.parse(JSON.stringify(SAMPLE_MEALS));
+    S.meals = [];
     S.list  = [];
   }
+  render();
 }
 
 // ─────────────────────────────────────────────────
@@ -1025,4 +990,3 @@ document.addEventListener('keydown', e => {
 // ─────────────────────────────────────────────────
 
 load();
-render();
