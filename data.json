@@ -1,75 +1,485 @@
 {
   "version": 1,
-  "lastUpdated": "2026-05-09T00:00:00.000Z",
+  "lastUpdated": "2026-05-20T18:49:26.629Z",
   "meals": [
     {
-      "id": "m1",
-      "name": "Spaghetti Bolognese",
-      "servings": 4,
-      "description": "Classic Italian meat sauce — rich, hearty, and satisfying.",
-      "recipe": "1. Heat olive oil in a large pan over medium heat.\n2. Saute diced onion and minced garlic until soft, about 5 min.\n3. Add ground beef and cook until browned, breaking it up.\n4. Pour in crushed tomatoes, season with salt and pepper, simmer 20 min.\n5. Toss with cooked spaghetti and finish with fresh basil and Parmesan.",
-      "ingredients": [
-        { "name": "Ground Beef (80/20)", "qty": "1",   "unit": "lb",     "category": "meat",       "price": 9.99 },
-        { "name": "Spaghetti",           "qty": "1",   "unit": "lb",     "category": "pantry",     "price": 2.99 },
-        { "name": "Crushed Tomatoes",    "qty": "2",   "unit": "cans",   "category": "pantry",     "price": 3.99 },
-        { "name": "Yellow Onion",        "qty": "1",   "unit": "item",   "category": "produce",    "price": 0.99 },
-        { "name": "Garlic",              "qty": "1",   "unit": "head",   "category": "produce",    "price": 1.29 },
-        { "name": "Fresh Basil",         "qty": "1",   "unit": "bunch",  "category": "herbs",      "price": 2.99 },
-        { "name": "Parmesan Cheese",     "qty": "4",   "unit": "oz",     "category": "dairy",      "price": 5.99 },
-        { "name": "Olive Oil",           "qty": "1",   "unit": "bottle", "category": "condiments", "price": 9.99 }
-      ]
-    },
-    {
-      "id": "m2",
-      "name": "Chicken Stir Fry",
-      "servings": 3,
-      "description": "Quick weeknight stir fry with crisp veggies over brown rice.",
-      "recipe": "1. Slice chicken breast into thin strips.\n2. Heat sesame oil in a wok over high heat.\n3. Cook chicken until golden, about 4-5 min. Remove.\n4. Stir fry broccoli, peppers, and snap peas for 3 min.\n5. Add chicken back, pour in soy sauce, garlic, and ginger.\n6. Serve immediately over cooked brown rice.",
-      "ingredients": [
-        { "name": "Chicken Breast", "qty": "1.5", "unit": "lbs",    "category": "meat",       "price": 11.99 },
-        { "name": "Broccoli",       "qty": "1",   "unit": "head",   "category": "produce",    "price": 3.49  },
-        { "name": "Bell Peppers",   "qty": "2",   "unit": "items",  "category": "produce",    "price": 3.98  },
-        { "name": "Snap Peas",      "qty": "8",   "unit": "oz",     "category": "produce",    "price": 4.99  },
-        { "name": "Fresh Ginger",   "qty": "1",   "unit": "item",   "category": "produce",    "price": 1.99  },
-        { "name": "Garlic",         "qty": "1",   "unit": "head",   "category": "produce",    "price": 1.29  },
-        { "name": "Soy Sauce",      "qty": "1",   "unit": "bottle", "category": "condiments", "price": 4.49  },
-        { "name": "Sesame Oil",     "qty": "1",   "unit": "bottle", "category": "condiments", "price": 6.99  },
-        { "name": "Brown Rice",     "qty": "1",   "unit": "bag",    "category": "pantry",     "price": 4.99  }
-      ]
-    },
-    {
-      "id": "m3",
-      "name": "Avocado Toast",
+      "id": "imp1salteyxuf",
+      "name": "Sweet Potato Tacos",
+      "description": "",
       "servings": 2,
-      "description": "Simple, delicious breakfast.",
-      "recipe": "1. Toast sourdough bread slices until golden.\n2. Mash avocado with lemon juice, flaky salt, and red pepper flakes.\n3. Spread generously on toast.\n4. Optional: top with a poached or fried egg.",
+      "recipe": "",
       "ingredients": [
-        { "name": "Sourdough Bread",   "qty": "1", "unit": "loaf",  "category": "bakery",     "price": 6.99 },
-        { "name": "Avocados",          "qty": "2", "unit": "items", "category": "produce",    "price": 3.98 },
-        { "name": "Lemon",             "qty": "1", "unit": "item",  "category": "produce",    "price": 0.99 },
-        { "name": "Eggs",              "qty": "1", "unit": "dozen", "category": "dairy",      "price": 6.99 },
-        { "name": "Red Pepper Flakes", "qty": "1", "unit": "jar",   "category": "herbs",      "price": 3.99 },
-        { "name": "Flaky Sea Salt",    "qty": "1", "unit": "jar",   "category": "condiments", "price": 5.99 }
+        {
+          "name": "Sweet Potatos",
+          "qty": "2",
+          "unit": "items",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Rice",
+          "qty": "1",
+          "unit": "box",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Black Beans",
+          "qty": "1",
+          "unit": "can",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Cilantro",
+          "qty": "1",
+          "unit": "bunch",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Lime",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Cheddar Cheese",
+          "qty": "1",
+          "unit": "item",
+          "category": "dairy",
+          "price": 0
+        },
+        {
+          "name": "Avacado",
+          "qty": "2",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Tomato",
+          "qty": "1",
+          "unit": "box",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Red Onion",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Tortillas",
+          "qty": "1",
+          "unit": "bag",
+          "category": "dry_goods",
+          "price": 0
+        }
       ]
     },
     {
-      "id": "m4",
-      "name": "Greek Salad",
-      "servings": 4,
-      "description": "Fresh Mediterranean salad — light and bright.",
-      "recipe": "1. Chop romaine into bite-sized pieces.\n2. Dice cucumber, halve cherry tomatoes, thinly slice red onion.\n3. Combine with olives and crumbled feta.\n4. Dress with olive oil, red wine vinegar, oregano, salt, and pepper.",
+      "id": "imp1sf7ms6wpv",
+      "name": "Falafel",
+      "description": "",
+      "servings": 2,
+      "recipe": "",
       "ingredients": [
-        { "name": "Romaine Lettuce",  "qty": "1", "unit": "head",   "category": "produce",    "price": 3.49 },
-        { "name": "English Cucumber", "qty": "1", "unit": "item",   "category": "produce",    "price": 1.99 },
-        { "name": "Cherry Tomatoes",  "qty": "1", "unit": "pint",   "category": "produce",    "price": 4.99 },
-        { "name": "Red Onion",        "qty": "1", "unit": "item",   "category": "produce",    "price": 0.99 },
-        { "name": "Kalamata Olives",  "qty": "1", "unit": "jar",    "category": "condiments", "price": 5.99 },
-        { "name": "Feta Cheese",      "qty": "4", "unit": "oz",     "category": "dairy",      "price": 4.99 },
-        { "name": "Olive Oil",        "qty": "1", "unit": "bottle", "category": "condiments", "price": 9.99 },
-        { "name": "Red Wine Vinegar", "qty": "1", "unit": "bottle", "category": "condiments", "price": 5.99 },
-        { "name": "Dried Oregano",    "qty": "1", "unit": "jar",    "category": "herbs",      "price": 3.99 }
+        {
+          "name": "Falafel",
+          "qty": "1",
+          "unit": "bag",
+          "category": "frozen",
+          "price": 0
+        },
+        {
+          "name": "Naan",
+          "qty": "1",
+          "unit": "bag",
+          "category": "bakery",
+          "price": 0
+        },
+        {
+          "name": "Hummus",
+          "qty": "1",
+          "unit": "item",
+          "category": "refrigerated",
+          "price": 0
+        },
+        {
+          "name": "Tomato",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Cucumber",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Tzaziki",
+          "qty": "1",
+          "unit": "item",
+          "category": "refrigerated",
+          "price": 0
+        },
+        {
+          "name": "Red Onion",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "impedxc68bowz",
+      "name": "Tortellini",
+      "description": "",
+      "servings": 2,
+      "recipe": "",
+      "ingredients": [
+        {
+          "name": "Tortellini",
+          "qty": "2",
+          "unit": "item",
+          "category": "cheese",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "impee08fqt57e",
+      "name": "Burgers",
+      "description": "",
+      "servings": 2,
+      "recipe": "",
+      "ingredients": [
+        {
+          "name": "Veggie Burgers",
+          "qty": "1",
+          "unit": "item",
+          "category": "frozen",
+          "price": 0
+        },
+        {
+          "name": "Burger Meat",
+          "qty": "1",
+          "unit": "item",
+          "category": "meat",
+          "price": 0
+        },
+        {
+          "name": "Buns",
+          "qty": "1",
+          "unit": "item",
+          "category": "bakery",
+          "price": 0
+        },
+        {
+          "name": "Sliced Cheese",
+          "qty": "1",
+          "unit": "item",
+          "category": "cheese",
+          "price": 0
+        },
+        {
+          "name": "Tomato",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Lettuce",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Red Onion",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "impee5opm2wap",
+      "name": "Cowboy Caviar",
+      "description": "",
+      "servings": 2,
+      "recipe": "",
+      "ingredients": [
+        {
+          "name": "Black Beans",
+          "qty": "1",
+          "unit": "can",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Pinto Beans",
+          "qty": "1",
+          "unit": "can",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Red Pepper",
+          "qty": "2",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Jalapeno",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Lime",
+          "qty": "2",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Red Onion",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Corn",
+          "qty": "1",
+          "unit": "bag",
+          "category": "frozen",
+          "price": 0
+        },
+        {
+          "name": "Cilantro",
+          "qty": "1",
+          "unit": "bunch",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Pineapple Juice",
+          "qty": "1",
+          "unit": "quart",
+          "category": "refrigerated",
+          "price": 0
+        },
+        {
+          "name": "Cherry Tomatos",
+          "qty": "1",
+          "unit": "box",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Chips",
+          "qty": "1",
+          "unit": "bag",
+          "category": "dry_goods",
+          "price": 0
+        }
       ]
     }
   ],
-  "list": []
+  "list": [
+    {
+      "id": "impedxqpxefy3",
+      "name": "Tortellini",
+      "qty": "2",
+      "unit": "item",
+      "category": "misc",
+      "price": 0,
+      "checked": false,
+      "source": "Tortellini"
+    },
+    {
+      "id": "impeebg80i4lz",
+      "name": "Veggie Burgers",
+      "qty": "1",
+      "unit": "item",
+      "category": "frozen",
+      "price": 0,
+      "checked": false,
+      "source": "Burgers"
+    },
+    {
+      "id": "impeebg80lklr",
+      "name": "Burger Meat",
+      "qty": "1",
+      "unit": "item",
+      "category": "meat",
+      "price": 0,
+      "checked": false,
+      "source": "Burgers"
+    },
+    {
+      "id": "impeebg80og1x",
+      "name": "Buns",
+      "qty": "1",
+      "unit": "item",
+      "category": "bakery",
+      "price": 0,
+      "checked": false,
+      "source": "Burgers"
+    },
+    {
+      "id": "impeebg80p1qz",
+      "name": "Sliced Cheese",
+      "qty": "1",
+      "unit": "item",
+      "category": "dairy",
+      "price": 0,
+      "checked": false,
+      "source": "Burgers"
+    },
+    {
+      "id": "impeebg80nnhm",
+      "name": "Tomato",
+      "qty": "1",
+      "unit": "item",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Burgers"
+    },
+    {
+      "id": "impeebg80fbni",
+      "name": "Lettuce",
+      "qty": "1",
+      "unit": "item",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Burgers"
+    },
+    {
+      "id": "impeebg80lyyw",
+      "name": "Red Onion",
+      "qty": "1",
+      "unit": "item",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Burgers"
+    },
+    {
+      "id": "impeec71i2o2o",
+      "name": "Black Beans",
+      "qty": "1",
+      "unit": "can",
+      "category": "dry_goods",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71irat4",
+      "name": "Pinto Beans",
+      "qty": "1",
+      "unit": "can",
+      "category": "dry_goods",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71i3o37",
+      "name": "Red Pepper",
+      "qty": "2",
+      "unit": "item",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71i8gez",
+      "name": "Jalapeno",
+      "qty": "1",
+      "unit": "item",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71i268l",
+      "name": "Lime",
+      "qty": "2",
+      "unit": "item",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71iq5h7",
+      "name": "Corn",
+      "qty": "1",
+      "unit": "bag",
+      "category": "frozen",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71i82zn",
+      "name": "Cilantro",
+      "qty": "1",
+      "unit": "bunch",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71ielun",
+      "name": "Pineapple Juice",
+      "qty": "1",
+      "unit": "quart",
+      "category": "misc",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71ilpeh",
+      "name": "Cherry Tomatos",
+      "qty": "1",
+      "unit": "box",
+      "category": "produce",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    },
+    {
+      "id": "impeec71i7zr5",
+      "name": "Chips",
+      "qty": "1",
+      "unit": "bag",
+      "category": "dry_goods",
+      "price": 0,
+      "checked": false,
+      "source": "Cowboy Caviar"
+    }
+  ]
 }
