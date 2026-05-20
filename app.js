@@ -163,8 +163,12 @@ function fmtPrice(n) {
   return '$' + Number(n).toFixed(2);
 }
 
+function lineTotal(item) {
+  return (item.price || 0) * (parseFloat(item.qty) || 1);
+}
+
 function totalList(items) {
-  return items.reduce((a, i) => a + (i.price || 0), 0);
+  return items.reduce((a, i) => a + lineTotal(i), 0);
 }
 
 function catInfo(id) {
@@ -296,7 +300,7 @@ function renderListView() {
             ${item.source ? `<span class="item-source">${esc(item.source)}</span>` : ''}
           </div>
           <div class="item-right">
-            ${item.price > 0 ? `<span class="item-price">${fmtPrice(item.price)}</span>` : ''}
+            ${item.price > 0 ? `<span class="item-price">${fmtPrice(lineTotal(item))}</span>` : ''}
             <button class="item-del" onclick="removeItem('${item.id}')">&#x2715;</button>
           </div>
         </div>`;
@@ -352,7 +356,7 @@ function renderMealsView() {
       </div>`;
   } else {
     for (const meal of filtered) {
-      const totalCost = meal.ingredients.reduce((a, i) => a + (i.price || 0), 0);
+      const totalCost = meal.ingredients.reduce((a, i) => a + lineTotal(i), 0);
       html += `
         <div class="meal-card">
           <div style="display:flex;align-items:flex-start;gap:8px">
@@ -398,7 +402,7 @@ function renderPreCheck() {
 
   const ch          = S.preCheck.checked;
   const selectedCnt = ch.filter(Boolean).length;
-  const selectedCost = meal.ingredients.reduce((a, i, idx) => a + (ch[idx] ? (i.price || 0) : 0), 0);
+  const selectedCost = meal.ingredients.reduce((a, i, idx) => a + (ch[idx] ? lineTotal(i) : 0), 0);
 
   let rows = '';
   meal.ingredients.forEach((ing, idx) => {
@@ -831,10 +835,73 @@ function closeForm() {
   document.getElementById('form-mount').innerHTML = '';
 }
 
-function formIngrChange(idx, field, val) {
-  if (S.form.ingredients[idx]) {
-    S.form.ingredients[idx][field] = field === 'price' ? (parseFloat(val) || 0) : val;
+let _suggestions = [];
+
+function getKnownIngredients() {
+  const seen = new Map();
+  for (const meal of S.meals) {
+    for (const ing of meal.ingredients) {
+      if (ing.price > 0 && ing.name.trim()) {
+        const key = ing.name.toLowerCase().trim();
+        if (!seen.has(key)) seen.set(key, ing);
+      }
+    }
   }
+  return Array.from(seen.values());
+}
+
+function showIngrSuggestions(idx, val) {
+  closeSuggestions();
+  const query = val.toLowerCase().trim();
+  if (!query) return;
+  _suggestions = getKnownIngredients().filter(i => i.name.toLowerCase().includes(query));
+  if (!_suggestions.length) return;
+
+  const row = document.querySelector(`.ingr-row[data-idx="${idx}"]`);
+  if (!row) return;
+  const nameInput = row.querySelector('.ingr-input');
+  const rect = nameInput.getBoundingClientRect();
+
+  const div = document.createElement('div');
+  div.id = 'ingr-suggest';
+  div.className = 'ingr-suggest';
+  div.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.bottom + 2}px;width:${Math.max(rect.width, 220)}px;z-index:2000`;
+  div.innerHTML = _suggestions.map((m, sidx) => `
+    <div class="ingr-suggest-item" onmousedown="selectIngrSuggestion(event,${idx},${sidx})">
+      <span class="suggest-name">${esc(m.name)}</span>
+      <span class="suggest-meta">${esc(m.unit)}</span>
+      <span class="suggest-price">${fmtPrice(m.price)}</span>
+    </div>`).join('');
+  document.body.appendChild(div);
+}
+
+function closeSuggestions() {
+  const el = document.getElementById('ingr-suggest');
+  if (el) el.remove();
+}
+
+function selectIngrSuggestion(e, idx, sidx) {
+  e.preventDefault();
+  const m = _suggestions[sidx];
+  if (!m || !S.form.ingredients[idx]) return;
+  S.form.ingredients[idx].name     = m.name;
+  S.form.ingredients[idx].price    = m.price;
+  S.form.ingredients[idx].unit     = m.unit;
+  S.form.ingredients[idx].category = m.category;
+  closeSuggestions();
+  const row = document.querySelector(`.ingr-row[data-idx="${idx}"]`);
+  if (!row) { renderForm(); return; }
+  const inputs = row.querySelectorAll('.ingr-input');
+  inputs[0].value = m.name;
+  inputs[2].value = m.unit;
+  inputs[3].value = m.category;
+  inputs[4].value = m.price;
+}
+
+function formIngrChange(idx, field, val) {
+  if (!S.form.ingredients[idx]) return;
+  S.form.ingredients[idx][field] = field === 'price' ? (parseFloat(val) || 0) : val;
+  if (field === 'name') showIngrSuggestions(idx, val);
 }
 
 function addIngrRow() {
@@ -930,7 +997,7 @@ function exportList() {
     text += `${cat.label.toUpperCase()}\n`;
     for (const item of groups[catId]) {
       const qty   = [item.qty, item.unit].filter(Boolean).join(' ');
-      const price = item.price > 0 ? `  (~${fmtPrice(item.price)})` : '';
+      const price = item.price > 0 ? `  (~${fmtPrice(lineTotal(item))})` : '';
       text += `${item.name}${qty ? ' - ' + qty : ''}${price}\n`;
     }
     text += '\n';
@@ -976,8 +1043,13 @@ function fbCopy(text) {
 // KEYBOARD SHORTCUTS
 // ─────────────────────────────────────────────────
 
+document.addEventListener('click', e => {
+  if (!e.target.closest('#ingr-suggest') && !e.target.closest('.ingr-row')) closeSuggestions();
+});
+
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
+  if (document.getElementById('ingr-suggest')) { closeSuggestions(); return; }
   if (S.form.visible)     { closeForm();     return; }
   if (S.preCheck.visible) { closePreCheck(); return; }
   if (S.detail.visible)   { closeDetail();   return; }

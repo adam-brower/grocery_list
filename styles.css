@@ -642,6 +642,31 @@ select.ingr-input {
   to   { opacity: 1; transform: translateY(0)    scale(1);  }
 }
 
+/* ── Ingredient autocomplete ── */
+.ingr-suggest {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.18);
+  overflow: hidden;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.ingr-suggest-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 14px;
+  cursor: pointer;
+  font-size: .88rem;
+  gap: 12px;
+}
+.ingr-suggest-item:active,
+.ingr-suggest-item:hover { background: var(--gl); }
+.suggest-name  { color: var(--txt); flex: 1; }
+.suggest-meta  { color: var(--txt2); font-size: .78rem; }
+.suggest-price { color: var(--g); font-weight: 600; flex-shrink: 0; }
+
 /* ── Scrollbar ── */
 ::-webkit-scrollbar       { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
