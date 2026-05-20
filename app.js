@@ -98,30 +98,30 @@ function migrateList(list) {
 function save() {
   try {
     localStorage.setItem('gl_meals', JSON.stringify(S.meals));
-    localStorage.setItem('gl_list',  JSON.stringify(S.list));
   } catch(e) {}
 }
 
 async function load() {
-  // Always try data.json first — it's the source of truth from the repo
+  // Always fetch data.json first — meals are the source of truth from the repo
+  // The list is never persisted to data.json; it always starts empty
   try {
     const res = await fetch('./data.json');
     if (res.ok) {
       const data = await res.json();
       S.meals = migrateMeals(data.meals || []);
-      S.list  = migrateList(data.list  || []);
-      save(); // Keep localStorage in sync
+      S.list  = [];
+      localStorage.setItem('gl_meals', JSON.stringify(S.meals));
+      localStorage.removeItem('gl_list');
       render();
       return;
     }
   } catch(e) {}
 
-  // Offline or fetch failed — fall back to localStorage
+  // Offline or fetch failed — fall back to localStorage for meals only
   try {
     const lm = localStorage.getItem('gl_meals');
-    const ll = localStorage.getItem('gl_list');
     S.meals = lm ? migrateMeals(JSON.parse(lm)) : [];
-    S.list  = ll ? migrateList(JSON.parse(ll))  : [];
+    S.list  = [];
   } catch(e) {
     S.meals = [];
     S.list  = [];
