@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastUpdated": "2026-05-20T23:18:04.826Z",
+  "lastUpdated": "2026-05-25T21:55:55.848Z",
   "meals": [
     {
       "id": "imp1salteyxuf",
@@ -296,6 +296,163 @@
           "unit": "item",
           "category": "produce",
           "price": 2.25
+        }
+      ]
+    },
+    {
+      "id": "implqhk9rfu0r",
+      "name": "Risotto",
+      "description": "",
+      "recipe": "",
+      "ingredients": [
+        {
+          "name": "Arborio Rice",
+          "qty": "1",
+          "unit": "box",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Yellow Onion",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Broth",
+          "qty": "1",
+          "unit": "box",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Parmesan Cheese",
+          "qty": "1",
+          "unit": "item",
+          "category": "cheese",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "implqmauakn76",
+      "name": "Pizza",
+      "description": "",
+      "recipe": "",
+      "ingredients": [
+        {
+          "name": "00 Flour",
+          "qty": "1",
+          "unit": "bag",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Mozzarella Cheese",
+          "qty": "1",
+          "unit": "bag",
+          "category": "cheese",
+          "price": 0
+        },
+        {
+          "name": "Marinara sauce",
+          "qty": "1",
+          "unit": "jar",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Pepperoni",
+          "qty": "1",
+          "unit": "bag",
+          "category": "cheese",
+          "price": 0
+        },
+        {
+          "name": "Yellow Onion",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Tomato",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "implqsz5n319c",
+      "name": "White Bean Potato Kale Soup",
+      "description": "",
+      "recipe": "",
+      "ingredients": [
+        {
+          "name": "Gold Potato’s ",
+          "qty": "1",
+          "unit": "lb",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Celery ",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Carrots",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Garlic",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Tomato Paste",
+          "qty": "1",
+          "unit": "item",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Vegetable Broth",
+          "qty": "1",
+          "unit": "box",
+          "category": "dry_goods",
+          "price": 0
+        },
+        {
+          "name": "Kale",
+          "qty": "1",
+          "unit": "bunch",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "Parsley ",
+          "qty": "1",
+          "unit": "item",
+          "category": "produce",
+          "price": 0
+        },
+        {
+          "name": "White Beans",
+          "qty": "1",
+          "unit": "jar",
+          "category": "dry_goods",
+          "price": 0
         }
       ]
     }
